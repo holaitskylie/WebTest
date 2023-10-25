@@ -1,0 +1,38 @@
+<HTML lang="en">
+<HEAD>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<TITLE>Document</TITLE>
+<style>
+    table{
+        border-collapse: collapse;
+    }
+    td,
+    th{
+        border: 1px solid #000000;
+        text-align: left;
+        
+    }
+</style>    
+</HEAD>
+<BODY>
+    <table>
+        <tr>
+            <td colspan="3">mp4 플레이 리스트</td>           
+           
+        </tr>
+        <tr>
+            <td><video width="300" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" autoplay controls></video>
+                <video width="300" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" autoplay controls></video>
+                <video width="300" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" autoplay controls></video>
+            </td>            
+        </tr>
+    </table>  
+        
+    
+
+
+
+
+</BODY>
+</HTML>

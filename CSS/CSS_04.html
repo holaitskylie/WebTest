@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            /* padding : 안쪽으로 여백을 줌 */
+            padding: 30px;
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            /* display : inline은 자기 안의content만큼 사이즈 조정 */
+            /* display : none은 화면에서 안보이게 하는 속성 */
+            /* display : inline-block은 줄바꿈은 일어나지 않는다 */
+            display: inline-block;
+            /* border : 외곽석 지정 */
+            border-style: solid;
+            border-color: blue;
+            border-width: 3px;
+            border-bottom-style: double;
+            border-top-style: dotted;
+            border-left-style: dashed;
+        }
+
+        .box2{
+            /* margine : 좌우 바깥으로 여백을 줌 */
+            margin: 30px;
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+            /* border로 한 번에 외곽선+컬러+픽셀 지정 가능 */
+            border: 1px solid blue;
+            border-radius: 10px;
+            /* text-align : 가운데 정렬 */
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>    
+</head>
+<body>
+    <!-- div.box : box라는 클래스 생성 -->
+    <div class="box">1</div>
+    <div class="box2">2</div>
+    <!-- div#box : box라는 id 생성-->
+    <div id="box"></div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .big-text {
+            /* 텍스트를 크게 표시 */
+            font-size: xx-large;
+            
+        }
+
+        .center {
+            /* 가운데 정렬 */
+            text-align: center;
+        }
+    </style>  
+    
+    
+</head>
+<body>
+    <input type="text" id="textField">
+    <button id="inputButton">입력</button>
+
+    <!-- 텍스트 영역에 대한 작업 -->
+    <div class="center" id="container">
+        <div class="big-text" id="result">big text</div>
+        <!-- 텍스트 아래에 빨강/파랑/초록 글자가 쓰여진 버튼 생성 -->
+        <button onclick="changeColor('빨강', 'red')">빨강</button>
+        <button onclick="changeColor('파랑', 'blue')">파랑</button>
+        <button onclick="changeColor('초록', 'green')">초록</button>
+
+    </div>
+    
+
+    <script>
+        //텍스트 값을 입력 받는다
+        const inputButton = document.getElementById('inputButton');
+        const textField = document.getElementById('textField');
+        const resultText = document.getElementById('result');
+        const container = document.getElementById('container');
+
+        container.style.visibility = 'hidden';
+
+
+        inputButton.addEventListener('click', function() {
+            //textField에 대한 값을 가져온다
+            console.log(textField.value);
+
+            //textField의 값에 대한 임시 상수 선언
+            const text = textField.value;
+
+            if(text === ''){
+                alert('텍스트 값을 입력해주세요');
+            } else {
+                //값이 있으면 가운데 크게 텍스트 표시
+                //입력받은 값을 화면에 표시
+                resultText.textContent = text;
+                //값을 입력받은 뒤에 텍스트필드 안의 값 초기화
+                textField.value = '';
+
+                container.style.visibility = 'visible';
+            }
+        });
+
+        //빨강, 파랑, 초록이 쓰여진 버튼을 누르면
+        // "무슨무슨 색으로 변경됩니다" 라는 경고창이 뜬다
+        function changeColor(colorText, color) {
+            alert(`${colorText} 색으로 변경됩니다.`);
+
+            resultText.style.color=color;
+
+        }
+    </script>
+</body>    
+</html>

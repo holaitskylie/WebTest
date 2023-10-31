@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>  
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>  
+    
+</head>
+<body>
+    <!-- 버튼 생성 -->
+    <button id="myButton">클릭</button>
+    <div id="div1">div1</div>
+
+    <!-- script의 위치도 고려해봐야 함 -->
+    <script>
+        // 객체 생성
+        const myButton = document.getElementById('myButton');
+        const someString = 'data';
+
+        const div1 = document.getElementById('div1');
+
+        //버튼 이벤트 생성
+        myButton.addEventListener('click',function(){
+            console.log(someString);
+        });
+
+        //div1에 마우스 이벤트 생성
+        div1.addEventListener('mouseover',function(){
+            div1.style.backgroundColor='red';
+        });
+
+        div1.addEventListener('mouseleave',function(){
+            div1.style.backgroundColor='blue';
+        });
+    </script>
+</body>    
+</html>

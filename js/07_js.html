@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            text-align: center;
+            font-size: 100px;
+        }
+
+        .customBtn {
+            display: inline;            
+            align-items: center;
+
+            padding: 10px 20px;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        function input() {
+            let inputTxt = prompt('텍스트를 입력하세요');
+
+            if(inputTxt===null||inputTxt==='') {
+                alert('텍스트값을 입력해 주세요');
+            } else {
+                output(inputTxt);
+                createButton();
+            }
+
+        }
+
+        function output(text) {
+            let outputTxt = document.getElementById('div1');
+            outputTxt.textContent = text;
+        }
+
+        function createButton() {
+            const colors = ['red','green','blue'];
+
+            for(let i=0; i<3; i++){
+                let button = document.createElement('button');
+                button.textContent=colors[i];
+                button.className='customBtn';
+                button.addEventListener('click',function(){
+                    changeColor(colors[i]);
+                })                
+                document.body.appendChild(button);
+            }
+        }
+
+        function changeColor(color) {
+            let colorTxt = document.getElementById('div1');
+            colorTxt.style.color=color;
+
+        }
+    </script>
+    
+</head>
+<body>
+    <button onclick="input()">클릭</button>
+    <div id="div1"></div>
+    
+</body>    
+</html>

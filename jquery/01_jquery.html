@@ -16,10 +16,20 @@
         }
     </style>
 
+
+</head>
+
+
+<body>
+    <div id="div1">div1</div>
+
     <script>
         function load() {
-            const div1 = document.getElementById('div1');
-            div1.style.backgroundColor = 'red';
+            //const div0 = document.getElementById('div1');
+            const div1 = $('#div1');
+
+            //div1.style.backgroundColor = 'red';
+            div1.css('background-color','red');
         }
 
         // onload와 동일한 효과
@@ -27,11 +37,6 @@
             load();
         });
     </script>
-</head>
-
-
-<body>
-    <div id="div1">div1</div>
 
 </body>
 

@@ -7,52 +7,52 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-        <style>
-            #facebook {
-                width: 250px;
-            }
+    <style>
+        #facebook {
+            width: 250px;
+        }
 
-            #box1 {
-                padding: 10px;
-                height: 20px;
-                background-color: grey;
-                border: 1px solid black;
-            }
+        #box1 {
+            padding: 10px;
+            height: 20px;
+            background-color: grey;
+            border: 1px solid black;
+        }
 
-            #box2 {
-                padding: 10px;
-                height: 210px;
-                background-color: #ebe8e8;
-            }
+        #box2 {
+            padding: 10px;
+            height: 210px;
+            background-color: #ebe8e8;
+            overflow: auto;
+        }
 
-            #resultBox {
-                margin: 10px;
-                padding: 6px;
-                background-color: white;
-                white-space: normal;
-                word-wrap: break-word;
-            }
+        #resultBox {
+            margin: 10px;
+            padding: 6px;
+            background-color: white;
+            white-space: normal;
+            word-wrap: break-word;
+        }
 
-            #textField {
-                padding: 5px;
-            }
+        #textField {
+            padding: 5px;
+        }
 
-            #submitButton {
-                background-color: grey;
-                padding: 5px 10px;
-                text-align: center;
-                border: 1px solid black;
-            }
-
-        </style>
+        #submitButton {
+            background-color: grey;
+            padding: 5px 10px;
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 
 <body>
     <div id="facebook">
         <div id="box1">기사 등록하기</div>
         <div id="box2">
-            
-        </div>        
+
+        </div>
     </div>
     <br>
     <input type="text" id="textField">
@@ -63,15 +63,15 @@
             console.log($('#textField').val());
             const text = $('#textField').val();
 
-            const result = $('<div>',{
-                id : 'resultBox',
-                text : text
+            const result = $('<div>', {
+                id: 'resultBox',
+                text: text
             });
 
             $('#box2').append(result);
 
             //const newHeight = resultBox[0].scrollHeight;
-            //result.css('height', newHeight + 'px');            
+            //result.css('height', newHeight + 'px');               
 
         });
 

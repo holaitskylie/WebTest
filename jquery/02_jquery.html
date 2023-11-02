@@ -36,11 +36,11 @@
             $('#showButton').click(function () {
                 $('#div1').show(2000, function () {
                     // showButton을 눌렀을 때, div1에 애니메이션 주기
-                    $(this).animate({left:'100px'})
-                    .animate({
-                        width: '150px',
-                        height: '150px'
-                    });
+                    $(this).animate({ left: '100px' })
+                        .animate({
+                            width: '150px',
+                            height: '150px'
+                        });
                 });
             })
 
@@ -79,6 +79,16 @@
             $('#result').html(text);
         });
     </script>
+
+    <img id="pic"
+        src="https://i.namu.wiki/i/pMBuVc6DCddn_22VrsoBvZ5tt04YO0F0uawKLWy3Acz1NHBWERGKiINsAp492B1loqL79bh3GJIIj1jxr30a0-KuEPQ2b3N2RIipSTUfe_YmiQpErsJuNJOjQYtYnAXtkagPIKWahXq5Xx_7dhJuzA.webp"
+        alt="" width="100">
+
+        <script>
+            $('#pic').click(function () {
+                $(this).attr('width','200');
+            });
+        </script>
 </body>
 
 </html>

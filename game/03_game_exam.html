@@ -22,6 +22,15 @@
             bottom: 10px;
             left: 10px;
         }
+
+        #enemy{
+            position: absolute;
+            width: 80px;
+            bottom: 10px;
+            right: 10px;
+            /* transform: scaleX(-1); 좌우반전 시키기 */
+        }
+
     </style>
 </head>
 
@@ -29,11 +38,35 @@
     <!-- div#stage>img#player -->
     <div id="stage">
         <img id="player" src="Assets/Fox.png" alt="">
+        <img id="enemy" src="Assets/enemy.png" alt="">
     </div>
 
     <script>
         // 스페이스바로 캐릭터 점프
         const player = $('#player');
+        const enemy = $('#enemy');
+      
+
+        function onUpdate(){
+            moveEnemy();
+        }
+
+        function moveEnemy(){
+            enemy.css({left:'-=3px'});
+            console.log(enemy.css('left'));
+
+            //화면 밖으로 나갔으면 원래 위치로 이동
+            const enemyLeft=pxToInt(enemy.css('left'));
+            if(enemyLeft <- 100){
+                enemyReset();
+
+            }
+
+        }
+
+        function enemyReset(){
+            enemy.css({left : '409px'});
+        }
 
         let isJumping = false;
 
@@ -44,8 +77,8 @@
             console.log('jump');
             // jump 연타 방지
             isJumping = true;
-            player.animate({ bottom: '+=60px' });
-            player.animate({ bottom: '-=60px' }, function () {
+            player.animate({ bottom: '+=100px' });
+            player.animate({ bottom: '-=100px' }, function () {
                 isJumping = false;
             });
         }
@@ -58,6 +91,13 @@
                     jump();
             }
         });
+
+        //픽셀 String을 숫자로 변환 : 100px -> 100
+        function pxToInt(pxStr){
+            return parseInt(pxStr,10);
+        }
+
+        setInterval(onUpdate, 1000/60)
     </script>
 </body>
 

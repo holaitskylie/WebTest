@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        #stage {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+            z-index: 1;
+        }
+
+        #player {
+            position: absolute;
+            width: 60px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="stage">
+        <img id="player" src="Assets/Fox.png" alt="">
+    </div>
+
+
+    <script>
+        const player = $('#player');
+
+        function moveRight() {
+            const playerRight = parseInt(player.css('right'), 10);
+            if (playerRight <= 20) {
+                return;
+            }
+            player.css({ left: '+=60px' });
+        }
+
+        function moveLeft() {
+            const playerLeft = parseInt(player.css('left'), 10);
+            if (playerLeft <= 0) {
+                return;
+            }
+            player.css({ left: '-=60px' });
+        }
+
+        function moveUp() {
+            const playerTop = parseInt(player.css('top'), 10);
+            if (playerTop <= 0) {
+                return;
+            }
+            player.css({ top: '-=60px' });
+        }
+
+        function moveDown() {
+            const playerBottom = parseInt(player.css('bottom'), 10);
+            if (playerBottom <= 0) {
+                return;
+            }
+            player.css({ top: '+=60px' });
+        }
+
+        // 키보드 이벤트 처리
+        $(document).keypress(function (event) {
+            console.log(event.key);
+
+            switch (event.key) {
+                case 'd':
+                    moveRight();
+                    break;
+                case 'a':
+                    moveLeft();
+                    break;
+                case 'w':
+                    moveUp();
+                    break;
+                case 's':
+                    moveDown();
+                    break;
+                default:
+            }
+        });
+
+    </script>
+</body>
+
+</html>

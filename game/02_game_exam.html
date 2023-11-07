@@ -10,7 +10,7 @@
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <style>
         #stage {
-            position: absolute;
+            position: relative;
             width: 500px;
             height: 300px;
             border: 1px solid black;
@@ -29,10 +29,26 @@
     <div id="stage">
         <img id="player" src="Assets/Fox.png" alt="">
     </div>
+    TIME : <span id="timeText">00:00</span>
 
 
     <script>
         const player = $('#player');
+        const timeText=$('#timeText');
+        
+        let time = 0;
+       
+        //clearInterval로 시간을 멈출 수 있음
+        const timeInterval = setInterval(function () {
+            time++;
+            const minutes = Math.floor((time%3600)/60); //분 계산
+            const seconds = time%60; //초 계산
+
+            const timeString=`${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+            timeText.text(timeString);
+
+        }, 1000)
+        
 
         function moveRight() {
             const playerRight = parseInt(player.css('right'), 10);
@@ -40,6 +56,7 @@
                 return;
             }
             player.css({ left: '+=60px' });
+            console.log(parseInt(player.css('left'), 10));
         }
 
         function moveLeft() {
@@ -48,6 +65,7 @@
                 return;
             }
             player.css({ left: '-=60px' });
+            console.log(parseInt(player.css('left'), 10));
         }
 
         function moveUp() {

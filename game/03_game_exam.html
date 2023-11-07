@@ -44,28 +44,44 @@
     <script>
         // 스페이스바로 캐릭터 점프
         const player = $('#player');
-        const enemy = $('#enemy');
+        const enemy = $('#enemy');      
       
 
         function onUpdate(){
-            moveEnemy();
+            moveEnemy();            
         }
 
         function moveEnemy(){
-            enemy.css({left:'-=3px'});
-            console.log(enemy.css('left'));
+            // enemy speed
+            //enemy.css({left:'-=3px'});
+            const speed = 3;
+            enemy.css({left : `-=${speed}px`});
+            
+            //console.log(enemy.css('left'));
 
             //화면 밖으로 나갔으면 원래 위치로 이동
             const enemyLeft=pxToInt(enemy.css('left'));
             if(enemyLeft <- 100){
                 enemyReset();
+                console.log(enemyReset);
 
             }
 
         }
+        
 
         function enemyReset(){
-            enemy.css({left : '409px'});
+            //등장 타이밍 조절
+            //const time = 1000/60;
+            const time = getRandomValue(500, 4000);
+            setTimeout(function() {
+                enemy.css({left : '409px'});
+            }, time);
+            
+        }
+
+        function getRandomValue(min,max){
+            return Math.floor(Math.random()*(max-min+1)+min);
         }
 
         let isJumping = false;

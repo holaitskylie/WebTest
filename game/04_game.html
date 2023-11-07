@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            text-align: center;
+            background: url("Assets/halloween.jpg");
+            background-size: cover;
+            color: white;
+
+        }
+
+        #board {
+            width: 540px;
+            height: 540px;
+            background-image: url("Assets/soil.png");
+            border: 3px solid white;
+            border-radius: 25px;
+
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        #board div {
+
+            width: 180px;
+            height: 180px;
+            background-image: url("Assets/pipe.png");
+            background-size: cover;
+        }
+
+        #board div img {
+            width: 100px;
+        }
+
+        #gameOverScene {
+            visibility: hidden;
+            width: 100%;
+            bottom: 100%;            
+        }
+
+        #gameOverScene button {
+            background-color: #ff6f00;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            padding: 20px 32px;
+            text-align: center;
+            font-size: 20px;
+            font-style: oblique;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        #gameOverScene button:hover {
+            background-color: white;
+            color: #ff6f00;
+        }
+
+        #fox {
+            position: relative;
+            width: 100px;
+            animation-name: anim;
+            animation-timing-function: linear;
+            animation-duration: 7s;
+            animation-iteration-count: infinite;                        
+        }
+
+        @keyframes anim{
+            0% {left: -40%;}
+            100%{left: 50%;}                    
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>호박 때려잡기</h1>
+    <h2>팍스를 괴롭히는 호박을 잡아라</h2>
+    <h2 id="score">0</h2>
+    <div id="board"></div>
+    <div id="gameOverScene">
+        <br>
+        <button onclick="gameReset()">RESTART</button>
+        <br>
+        <br>
+        <br>
+        <img src="Assets/pumpkin.png" alt="" id="fox">        
+        <img src="Assets/Fox.png" alt="" id="fox">
+    </div>
+
+    <script>
+        let currPumpkinTile;
+        let currFoxTile;
+        let score = 0;
+        let isGameover = false;
+
+        window.onload = function () {
+            setGame();
+        };
+
+        function gameReset() {
+            isGameover = false;
+            score = 0;
+            document.getElementById("score").innerText = score.toString();
+            $('#gameOverScene').css('visibility', 'hidden');
+        }
+
+        function setGame() {
+            for (let i = 0; i < 9; i++) {
+                const tile = document.createElement("div");
+                tile.id = i.toString();
+                tile.addEventListener("click", selectTile);
+                document.getElementById("board").appendChild(tile);
+            }
+
+            setInterval(setPumpkin, 1000);
+            setInterval(setFox, 3000);
+        }
+
+        function getRandomTile() {
+            const num = Math.floor(Math.random() * 9);
+            return num.toString();
+        }
+
+        function setPumpkin() {
+            if (isGameover) {
+                return;
+            }
+
+            if (currPumpkinTile) {
+                currPumpkinTile.innerHTML = "";
+            }
+            const pumpkin = document.createElement("img");
+            pumpkin.src = "Assets/pumpkin.png";
+
+            const num = getRandomTile();
+            if (currFoxTile && currFoxTile.id == num) { return; }
+            currPumpkinTile = document.getElementById(num);
+            currPumpkinTile.appendChild(pumpkin);
+        }
+
+        function setFox() {
+            if (isGameover) {
+                return;
+            }
+
+            if (currFoxTile) {
+                currFoxTile.innerHTML = "";
+            }
+            const fox = document.createElement("img");
+            fox.src = "Assets/Fox2.png";
+
+            const num = getRandomTile();
+            if (currPumpkinTile && currPumpkinTile.id == num) { return; }
+            currFoxTile = document.getElementById(num);
+            currFoxTile.appendChild(fox);
+        }
+
+        function selectTile() {
+            if (isGameover) {
+                return;
+            }
+
+            if (this == currPumpkinTile) {
+                score += 10;
+                document.getElementById("score").innerText = score.toString();
+                document.getElementById("score").style.color = "white";
+            }
+            else if (this == currFoxTile) {
+                document.getElementById("score").innerText = "작고 귀여운 팍스를 잡으면 어캄?"
+                document.getElementById("score").style.color = "red";
+                isGameover = true;
+
+                alert(`Game Over!! Score is ${score}`);
+                $('#gameOverScene').css('visibility', 'visible');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

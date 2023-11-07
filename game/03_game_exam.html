@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        #stage {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+            z-index: 1;
+        }
+
+        #player {
+            position: absolute;
+            width: 60px;
+            bottom: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- div#stage>img#player -->
+    <div id="stage">
+        <img id="player" src="Assets/Fox.png" alt="">
+    </div>
+
+    <script>
+        // 스페이스바로 캐릭터 점프
+        const player = $('#player');
+
+        let isJumping = false;
+
+        function jump() {
+            if (isJumping) {
+                return;
+            }
+            console.log('jump');
+            // jump 연타 방지
+            isJumping = true;
+            player.animate({ bottom: '+=60px' });
+            player.animate({ bottom: '-=60px' }, function () {
+                isJumping = false;
+            });
+        }
+
+        $(document).keydown(function (event) {
+            console.log(event.key);
+
+            switch (event.key) {
+                case ' ':
+                    jump();
+            }
+        });
+    </script>
+</body>
+
+</html>

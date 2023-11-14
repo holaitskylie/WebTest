@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="title">
+        마리오
+    </div>
+    <div>
+        <span>
+            <img id="photo" src="../game/Assets/mario.png" alt="" width="100px">
+        </span>
+        
+        <span>
+            <div id="release_Date">
+                개봉일 : 2020-10-10
+            </div>
+            
+            <br>
+            <button id="vote_count">41</button>
+            <button id="vote_average">6.3</button>
+        </span>
+    </div>
+    <hr>
+    <div id="overview">
+        설명
+    </div>
+
+    <script>
+        const tile = $('#title');
+        const photo = $('#photo');
+        const releaseDate = $('#release_Date');
+        const voteCount = $('#vote_count');
+        const voteAverage = $('#vote_average');
+
+        // ? 뗀 쿼리 문자열 : name=홍길동&age=10
+        const queryString = window.location.search.slice(1);
+    
+        const queryParams = queryString.split('&');
+        const movieId = queryParams[0].split('=')[1];
+    
+        fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1`)
+          .then(response => response.json())
+          .then(json => {
+            tile.text(movie.tile);
+          });
+    
+      </script>
+    
+</body>
+</html>

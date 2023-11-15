@@ -11,19 +11,27 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
-        main {
-            display: flex;
+        .feature_home {
+            height: 850px;           
         }
 
-        main .video {
-            position: relative;
+        section {
+            display: block;
+        }
+
+        .video {
+            /* position: relative; */
+            display: block;
             width: 100%;
             height: 0;
             padding-bottom: 50%;
+        }
+
+        .movieVisual{
+            position: relative;
+            display: block;            
         }
 
         iframe {
@@ -32,7 +40,7 @@
             object-fit: cover;
         }
 
-        main .description {
+        .description {
             position: absolute;
             bottom: 50%;
             top: 30%;
@@ -41,53 +49,49 @@
             color: white;
         }
 
-        .button button {
-            gap: 30px;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+        div {
+            display: block;
         }
 
-        .slide_wrapper {
-            position: relative;
-            width: 660px;
-            margin: 0 auto;
-            height: 400px;
-            overflow: hidden;            
+        section .slider_wrapper {
+            
+            position: relative;            
+            padding: 0;     
+            overflow: hidden;
         }
 
-        .slide_wrapper .slider {
+        section .slider_wrapper h2{
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .slider_wrapper .slide {
+            overflow: hidden;
             display: flex;
             overflow-x: scroll;
             scroll-behavior: smooth;
+            overflow: hidden;
+            
         }
 
-        .slides {
-            /* position: absolute; */
+        .slides {       
+            
             display: flex;
-            /* transition: 0.5s ease-out; */
-            /* left: 0; top: 0; */
+            
         }
 
         .slides li {
-            width: 200px;
-            height: 400px;
-            /* float: left; */
-            flex: 0 0 auto;
+            
+           flex: 0 0 auto;
         }
 
-        .slides li:not(:last-child) {
+        .slides li:not(:last-child){
             margin-right: 30px;
         }
 
-        .controls {
+        .controls button{
             text-align: center;
-            /* margin-top: auto; */
-            color: white;
-        }
-
-        .controls button {
             background-color: black;
             color: white;
             cursor: pointer;
@@ -100,7 +104,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container-fluid">https://image.tmdb.org/t/p/w500/mi3BW5WJpzBMLwT1Npu8LR5Xtl3.jpg
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <ul class="navbar-nav">
                         <li class="nav-item">
@@ -127,9 +131,9 @@
         </nav>
     </header>
 
-    <main>
+    <section class="feature_home">
         <div class="video">
-            <iframe src="https://www.youtube.com/embed/RaGNLFbVfLw?autoplay=1&mute=1" frameborder="0"
+            <iframe class="movieVisual" src="https://www.youtube.com/embed/RaGNLFbVfLw?autoplay=1&mute=1" frameborder="0"
                 allowfullscreen></iframe>
         </div>
         <div class="description">
@@ -142,45 +146,45 @@
                 <button class="detail">상세정보</button>
             </div>
         </div>
-
-    </main>
-
-    <section>
-        <div class="slide_wrapper">
-            <div class="slider">
+        <div class="slider_wrapper">
+            <h2>오늘의 추천 영화</h2>
+            <div class="slide">
                 <ul class="slides" id="list"></ul>
             </div>
-        </div>
-        <div class="controls">
-            <button class="control-btn" onclick="prevSlide()">이전</button>
-            <button class="control-btn" onclick="nextSlide()">다음</button>
+            <div class="controls">
+                <button class="control-btn" onclick="prevSlide()">이전</button>
+                <button class="control-btn" onclick="nextSlide()">다음</button>
+            </div>
+
         </div>
     </section>
 
+
+
     <script>
+
+
         async function fetchMovieData() {
             const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1');
             const jsonResult = await response.json();
             const movies = jsonResult.results;
 
+            // Properly define the list variable using jQuery
             const list = $('#list');
+
             movies.forEach((movie) => {
                 const listItem = $('<li>').click(() => movePage(movie.id));
                 listItem.append(`
-                    <div style="width: 150px; height: 200px; overflow:hidden">
-                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>                    
-                `);
+                <div style="width: 150px; height: 200px; overflow:hidden">
+                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>                    
+            `);
                 list.append(listItem);
             });
 
             // 동적으로 계산된 슬라이드 너비 설정
             const slideWidth = (200 + 30) * movies.length; // 각 아이템 너비 + 마진
-            list.parent().width(slideWidth);
-
-            // 슬라이드 이동 버튼 설정
-            $('.controls').append(`<span onclick="prevSlide()">이전</span>`);
-            $('.controls').append(`<span onclick="nextSlide()">다음</span>`);
+            list.parent().width(slideWidth);           
         }
 
         function movePage(movieId) {
@@ -204,8 +208,13 @@
             list.animate({ marginLeft: '0' }, 500);
         }
 
+        
 
-        fetchMovieData();
+        // Wait for the DOM to be ready before executing the script
+        $(document).ready(function () {
+            fetchMovieData();
+        });
+
     </script>
 </body>
 

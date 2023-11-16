@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         .feature_home {
-            height: 850px;           
+            /* height: 850px;            */
         }
 
         section {
@@ -49,18 +49,22 @@
             color: white;
         }
 
-        div {
+        .recommandMovie{
             display: block;
         }
+        
+        .recommandMovie .inner{
+            padding: auto;
+        }
 
-        section .slider_wrapper {
-            
+        .recommandMovie .slider_wrapper {
+            display: block;
             position: relative;            
             padding: 0;     
             overflow: hidden;
         }
 
-        section .slider_wrapper h2{
+        .slider_wrapper h2{
             margin-left: 2rem;
             margin-bottom: 1rem;
             margin-top: 0.5rem;
@@ -90,13 +94,21 @@
             margin-right: 30px;
         }
 
-        .controls button{
+        .recommandMovie .controls button{
             text-align: center;
             background-color: black;
             color: white;
             cursor: pointer;
             margin: 20px;
             padding: 10px 20px;
+        }
+
+        .recommandMovie .control-prev{
+            left: -100px;
+        }
+
+        .recommandMovie .control-next{
+            right: -100px;
         }
     </style>
 </head>
@@ -145,17 +157,21 @@
                 <button class="play"><i class="fa-solid fa-play"></i><span>재생</span></button>
                 <button class="detail">상세정보</button>
             </div>
-        </div>
-        <div class="slider_wrapper">
-            <h2>오늘의 추천 영화</h2>
-            <div class="slide">
-                <ul class="slides" id="list"></ul>
+        </div>        
+    </section>
+
+    <section class="recommandMovie">
+        <div class="inner">
+            <div class="slider_wrapper">
+                <h2>오늘의 추천 영화</h2>
+                <div class="slide">
+                    <ul class="slides" id="list"></ul>
+                </div>               
             </div>
             <div class="controls">
-                <button class="control-btn" onclick="prevSlide()">이전</button>
-                <button class="control-btn" onclick="nextSlide()">다음</button>
+                <button class="control-prev" onclick="prevSlide()">이전</button>
+                <button class="control-next" onclick="nextSlide()">다음</button>
             </div>
-
         </div>
     </section>
 
